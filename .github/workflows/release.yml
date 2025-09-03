@@ -16,20 +16,14 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # Always ensure a lockfile exists BEFORE running npm ci
-      - name: Ensure lockfile, then install
+      - name: Install dependencies
         run: |
-          set -e
-          echo "Repo contents:"
-          ls -la
           if [ -f package-lock.json ]; then
-            echo "package-lock.json found -> using npm ci"
+            echo "package-lock.json found; using npm ci"
             npm ci
           else
-            echo "No package-lock.json -> generating one, then using npm ci"
-            npm install --package-lock-only --no-audit --no-fund
-            test -f package-lock.json || (echo "Failed to generate lockfile" && exit 1)
-            npm ci
+            echo "No package-lock.json found; using npm install and generating lockfile"
+            npm install --no-audit --no-fund
           fi
 
       - name: Build & bundle
