@@ -10,16 +10,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm run release
+          cache: 'npm'
 
-      # Publish the bundle and index to gh-pages
-      - name: Deploy
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            echo "Lockfile found; using npm ci"
+            npm ci
+          else
+            echo "No lockfile; using npm install"
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Build & bundle
+        run: npm run release
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./bundles
-          # The toolchain's `paperback bundle` outputs bundles and an index.min.json in /bundles
