@@ -1,0 +1,8 @@
+- name: Generate package-lock.json
+  run: npm install --no-audit --no-fund
+
+- name: Upload package-lock.json as artifact
+  uses: actions/upload-artifact@v3
+  with:
+    name: package-lock
+    path: package-lock.json
