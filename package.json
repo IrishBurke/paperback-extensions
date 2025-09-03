@@ -1,0 +1,16 @@
+{
+  "name": "paperback-demonicscans",
+  "version": "1.0.0",
+  "description": "Paperback extension repo: DemonicScans (Madara) for Paperback 0.8",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p .",
+    "bundle": "paperback bundle",
+    "serve": "paperback serve -p 8080",
+    "release": "npm run build && npm run bundle"
+  },
+  "devDependencies": {
+    "@paperback/toolchain": "^1.0.0-alpha.53",
+    "typescript": "^5.4.0"
+  }
+}
