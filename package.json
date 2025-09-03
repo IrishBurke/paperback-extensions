@@ -10,7 +10,12 @@
     "release": "npm run build && npm run bundle"
   },
   "devDependencies": {
-    "@paperback/toolchain": "^1.0.0-alpha.53",
-    "typescript": "^5.4.0"
-  }
+  "@paperback/toolchain": "^1.0.0-alpha.53",
+  "typescript": "^5.4.0"
+  },
+  "scripts": {
+  "build": "tsc -p .",
+  "bundle": "paperback bundle",
+  "release": "npm run build && npm run bundle"
+}
 }
