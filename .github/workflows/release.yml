@@ -22,7 +22,7 @@ jobs:
             echo "package-lock.json found; using npm ci"
             npm ci
           else
-            echo "No package-lock.json found; using npm install and generating lockfile"
+            echo "No package-lock.json found; using npm install (and generating lockfile)"
             npm install --no-audit --no-fund
           fi
 
