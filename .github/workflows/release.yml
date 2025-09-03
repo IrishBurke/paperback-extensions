@@ -16,15 +16,14 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      # Create a lockfile if the repo doesn't have one yet
+      - name: Generate lockfile when missing
+        if: ${{ hashFiles('package-lock.json') == '' }}
+        run: npm install --package-lock-only --no-audit --no-fund
+
+      # Now install strictly from the lockfile
       - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            echo "Lockfile found; using npm ci"
-            npm ci
-          else
-            echo "No lockfile; using npm install"
-            npm install --no-audit --no-fund
-          fi
+        run: npm ci
 
       - name: Build & bundle
         run: npm run release
