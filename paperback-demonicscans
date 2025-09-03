@@ -1,0 +1,15 @@
+paperback-demonicscans/
+├─ src/
+│  ├─ index.ts
+│  ├─ sources/
+│  │  └─ DemonicScans.ts
+│  └─ parsers/
+│     └─ MadaraParser.ts
+├─ assets/
+│  └─ icon.png
+├─ package.json
+├─ tsconfig.json
+├─ README.md
+└─ .github/
+   └─ workflows/
+      └─ release.yml
